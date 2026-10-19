@@ -1,6 +1,6 @@
 # Input Buffer
 
-A Geode mod for Geometry Dash 2.2081 (Windows) that makes tight timings easier.
+A Geode mod for Geometry Dash 2.2081 (MacOS) that makes tight timings easier.
 
 If you click slightly too early, the mod remembers the click and fires it the moment you land or touch an orb. In ship, UFO, swing and wave it makes very quick taps come out consistent.
 
