@@ -403,6 +403,8 @@ class $modify(BufferLayer, GJBaseGameLayer) {
             s.pressStep = isFlyMode(p) ? step : -1;
 
             bool early = isGroundMode(p) && !p->m_isOnGround && ringsTouching(p) == 0;
+            DBG("[InputBuffer] {} PRESS mode={} onGround={} rings={} early={} limit={} steps",
+                tag, modeName(p), p->m_isOnGround, ringsTouching(p), early, modeLimitSteps(p));
             if (early && modeLimitSteps(p) > 0) {
                 s.pending = true;
                 s.pendingStart = step;
