@@ -70,7 +70,7 @@ Hotkeys are Windows-only and are read even when the game window is not focused.
 
 ## Known limitations
 
-- Windows only.
+- MacOS and Windows only.
 - The TPS setting is entered by hand and must be kept in sync with your real TPS.
 - Delayed inputs are injected by the mod, so effects that depend on the original input event may not see them at the exact moment.
 - Other input mods (for example Click Between Frames) can interact with this one. If something feels off, test with the other mod disabled.
