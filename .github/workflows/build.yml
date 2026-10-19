@@ -23,21 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Geode's bindings repo is currently broken for GD 2.2081 on macOS
-      # (SequenceTriggerState is never #included). Use a fixed commit and
-      # add the one missing "depends" tag ourselves.
+      # Geode's newest bindings are currently broken for GD 2.2081.
+      # Use the last known-good commit and build its matching code generator.
       - name: Get bindings
         uses: actions/checkout@v4
         with:
           repository: geode-sdk/bindings
-          ref: 5b5f10628efa307ce65a96abe974b746b449341b
+          ref: 273229a5538d2508cef3d0fd16b007f944fef774
           path: bindings-pinned
-
-      - name: Patch bindings
-        shell: bash
-        run: |
-          perl -0pi -e 's/\[\[link\(android\)\]\](\r?\nclass SequenceTriggerGameObject )/[[link(android), depends(SequenceTriggerState)]]$1/' bindings-pinned/bindings/2.2081/GeometryDash.bro
-          grep -n "depends(SequenceTriggerState)\]\]" bindings-pinned/bindings/2.2081/GeometryDash.bro
 
       - name: Build the mod
         uses: geode-sdk/build-geode-mod@main
@@ -46,6 +39,7 @@ jobs:
         with:
           combine: true
           target: ${{ matrix.config.target }}
+          configure-args: -DSKIP_BUILDING_CODEGEN=OFF
 
   package:
     name: Package builds
